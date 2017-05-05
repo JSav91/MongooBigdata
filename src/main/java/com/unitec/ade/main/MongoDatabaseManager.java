@@ -2,6 +2,9 @@ package com.unitec.ade.main;
 
 import java.util.Scanner;
 
+import com.unitec.ade.business.ComplexQuery1;
+import com.unitec.ade.business.ComplexQuery2;
+import com.unitec.ade.business.ComplexQuery3;
 import com.unitec.ade.business.DataInsertManager;
 import com.unitec.ade.business.SimpleQuery1;
 import com.unitec.ade.business.SimpleQuery2;
@@ -22,7 +25,6 @@ public class MongoDatabaseManager implements ApplicationConstants
 		Scanner scan = new Scanner(System.in);
 		do {
 			// OPTION PANE ############################################################
-			
 			System.out.println("Mongo Db Data Analytics on Police Crime data\n");
 			System.out.println("Choose from below database operations to execute\n");
 			System.out.println("1) \t Insert Dummy data\n");
@@ -36,8 +38,7 @@ public class MongoDatabaseManager implements ApplicationConstants
 					+ " \t ordered in sequence by agency, then state, then weapons.\n");
 			System.out.println("4) \t  Find crimes where offender and victim were acquaintances, and the number\n"
 					+ "\t of victims is higher than the state average, find the average age of the victims for\n"
-					+ "\t the whole state.Find crimes where offender and victim were acquaintances, and the number\n"
-					+ "\t of victims is higher than the state average, find the average age of the victims for the whole state.\n");
+					+ "\t the whole state.");
 			System.out.println("5) \t  Find which weapon was used the most in each state. A Year range may optionally be specified.\n");
 			System.out.println("6) \t  Find a count of unsolved crimes for a specified state, grouped by year and month\n");
 			System.out.println("7) \t  Update operation\n");
@@ -56,18 +57,21 @@ public class MongoDatabaseManager implements ApplicationConstants
 						System.out.println("Time taken for inserting "+(CASE_COUNT*20)+" is :"+DataInsertManager.totalTimeforInsert);
 						break;
 			//~~~~~~~~~~~~Query~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			case 2:		
+			case 2:		System.out.println("Exceuting Read Operation for Query");
+						new ComplexQuery1().runQuery();
 						break;
-			case 3:
-				break;
-			case 4: 
-				break;
-			case 5:	System.out.println("Exceuting Read Operation for Query");
-					new SimpleQuery1().runQuery();
-				break;
-			case 6 :System.out.println("Exceuting Read Operation for Query");
-					new SimpleQuery2().runQuery();
-				break;
+			case 3:		System.out.println("Exceuting Read Operation for Query");
+						new ComplexQuery2().runQuery();
+						break;
+			case 4: 	System.out.println("Exceuting Read Operation for Query");
+						new ComplexQuery3().runQuery();
+						break;
+			case 5:		System.out.println("Exceuting Read Operation for Query");
+						new SimpleQuery1().runQuery();
+						break;
+			case 6 :	System.out.println("Exceuting Read Operation for Query");
+						new SimpleQuery2().runQuery();
+						break;
 			case 7:
 				break;
 			case 8 :
