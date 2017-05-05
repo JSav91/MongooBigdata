@@ -5,6 +5,8 @@ import java.util.Arrays;
 import org.bson.Document;
 import org.mongodb.morphia.aggregation.Projection;
 
+import com.google.gson.Gson;
+import com.mongodb.BasicDBList;
 import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
@@ -27,20 +29,23 @@ public class SimpleQuery1 implements ApplicationConstants{
 
 		Document groupIdFeilds=new Document();
 		groupIdFeilds.put("state", "$state");
-		groupIdFeilds.put("date", "$date_time");
+		
 		groupIdFeilds.put("weapon", "$weapon");
 		
 		Document stage2GroupIdFeilds=new Document();
 		stage2GroupIdFeilds.put("state", "$_id.state");
-		stage2GroupIdFeilds.put("date", "$_id.date_time");
+		
 	
 		Document sortFeilds=new Document();
-		sortFeilds.put("count",-1);
+		sortFeilds.put("count",1);
 		
 		Document projectFeilds=new Document();
-		projectFeilds.put("weapons",Projections.slice("$weapons",1));
 		projectFeilds.put("count","1");
 
+		BasicDBList sliceList=new BasicDBList();
+		sliceList.add("$weapons");
+		sliceList.add(-1);
+		
 		long startTime=System.currentTimeMillis();
 		AggregateIterable<Document> iterable=DB.getCollection("case").aggregate(Arrays.asList(
 
@@ -48,15 +53,15 @@ public class SimpleQuery1 implements ApplicationConstants{
 				Aggregates.match(Filters.eq("date_time",matchEndDate)),
 				Aggregates.group(groupIdFeilds,Accumulators.sum("weaponCount",1)),
 				Aggregates.group(stage2GroupIdFeilds,Accumulators.push("weapons",new Document("weapon","$_id.weapon").append("count","$weaponCount"))),
-				Aggregates.sort(sortFeilds),
-				Aggregates.project(projectFeilds)
+				Aggregates.sort(sortFeilds)
+				,Aggregates.project(Projections.fields(new Document("weapons",new Document("$slice",sliceList))))
 				));
 		long stopTime=System.currentTimeMillis();
 		
 		totalTimeforRead=(stopTime-startTime);
 		for(Document document:iterable){
 			rowcount++;
-			System.out.println(document.toJson());
+			System.out.println(new Gson().toJson(document));
 			size+=document.size();
 		}
 		
