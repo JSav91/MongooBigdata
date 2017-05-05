@@ -1,7 +1,5 @@
 package com.unitec.ade.entity;
 
-import java.util.UUID;
-
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -16,13 +14,13 @@ public class Person {
 
 	@Id
 	@Property("id")
-    protected ObjectId mId;
+    protected ObjectId id;
 	@Property("ethenicity")
-    protected String mEthnicity;
+    protected String ethnicity;
 	@Property("gender")
-    protected String mGender;
+    protected String gender;
 	@Property("age")
-    protected int mAge;
+    protected int age;
 
     public Person()
     {
@@ -31,49 +29,49 @@ public class Person {
 
     public Person(ObjectId pId, String pEthnicity, String pGender, int pAge)
     {
-        this.mId = pId;
-        mEthnicity = pEthnicity;
-        mAge = pAge;
-        mGender = pGender;
+        this.id = pId;
+        this.ethnicity = pEthnicity;
+        this.age = pAge;
+        this.gender = pGender;
     }
 
     public String getEthnicity() {
-        return mEthnicity;
+        return ethnicity;
     }
 
     public void setEthnicity(String pEthnicity) {
-        this.mEthnicity = pEthnicity;
+        this.ethnicity = pEthnicity;
     }
 
     public String getGender() {
-        return mGender;
+        return gender;
     }
 
     public void setGender(String pGender) {
-        this.mGender = pGender;
+        this.gender = pGender;
     }
 
     public int getAge() {
-        return mAge;
+        return age;
     }
 
     public void setAge(int pAge) {
-        this.mAge = pAge;
+        this.age = pAge;
     }
 
     public ObjectId getId() {
-        return mId;
+        return id;
     }
 
     public void setId(ObjectId pId) {
-        this.mId = pId;
+        this.id = pId;
     }
 
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Person &&
-                mGender.equals(((Person) obj).getGender()) &&
-                mEthnicity.equals(((Person) obj).getEthnicity()) &&
-                mAge == ((Person) obj).getAge();
+                gender.equals(((Person) obj).getGender()) &&
+                ethnicity.equals(((Person) obj).getEthnicity()) &&
+                age == ((Person) obj).getAge();
     }
 }

@@ -3,7 +3,6 @@ package com.unitec.ade.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -19,21 +18,21 @@ public class CaseRecord {
 
 	@Id
 	@Property("id")
-    private ObjectId mId;
+    private ObjectId id;
     @Property("status")
-    private String mStatus;
+    private String status;
     @Property("agency_type")
-    private String mAgencyType;
+    private String agency_type;
     @Property("agency_name")
-    private String mAgencyName;
+    private String agency_name;
     @Property("city")
-    private String mCity;
+    private String city;
     @Property("state")
-    private String mState;
+    private String state;
     @Property("date")
-    private Date mDateTime;
+    private Date date_time;
     @Property("crime_type")
-    private String mCrimeType;
+    private String crime_type;
     @Property("weapon")
     private String weapon;
     @Reference
@@ -54,23 +53,23 @@ public class CaseRecord {
 
     public CaseRecord(ObjectId pId,String pStatus, String pAgencyType, String pAgencyName, String pCity, String pState, Date pDateTime, String pCrimeType,String weapon) {
         this();
-        this.mStatus = pStatus;
-        this.mAgencyType = pAgencyType;
-        this.mAgencyName = pAgencyName;
-        this.mCity = pCity;
-        this.mState = pState;
-        this.mDateTime = pDateTime;
-        this.mCrimeType = pCrimeType;
+        this.status = pStatus;
+        this.agency_type = pAgencyType;
+        this.agency_name = pAgencyName;
+        this.city = pCity;
+        this.state = pState;
+        this.date_time = pDateTime;
+        this.crime_type = pCrimeType;
         this.weapon=weapon;
-        this.mId = pId;
+        this.id = pId;
     }
 
     public String getStatus() {
-        return mStatus;
+        return status;
     }
 
     public void setStatus(String pStatus) {
-        mStatus = pStatus;
+        status = pStatus;
     }
 
     public List<String> getEvidence() {
@@ -90,7 +89,7 @@ public class CaseRecord {
     }
 
     public String getAgencyType() {
-        return mAgencyType;
+        return agency_type;
     }
 
     
@@ -104,55 +103,55 @@ public class CaseRecord {
 	}
 
 	public void setAgencyType(String pAgencyType) {
-        mAgencyType = pAgencyType;
+        agency_type = pAgencyType;
     }
 
     public String getAgencyName() {
-        return mAgencyName;
+        return agency_name;
     }
 
     public void setAgencyName(String pAgencyName) {
-        mAgencyName = pAgencyName;
+        agency_name = pAgencyName;
     }
 
     public String getCity() {
-        return mCity;
+        return city;
     }
 
     public void setCity(String pCity) {
-        mCity = pCity;
+        city = pCity;
     }
 
     public String getState() {
-        return mState;
+        return state;
     }
 
     public void setState(String pState) {
-        mState = pState;
+        state = pState;
     }
 
     public Date getDateTime() {
-        return mDateTime;
+        return date_time;
     }
 
     public void setDateTime(Date pDateTime) {
-        mDateTime = pDateTime;
+        date_time = pDateTime;
     }
 
     public String getCrimeType() {
-        return mCrimeType;
+        return crime_type;
     }
 
     public void setCrimeType(String pCrimeType) {
-        mCrimeType = pCrimeType;
+        crime_type = pCrimeType;
     }
 
     public ObjectId getId() {
-        return mId;
+        return id;
     }
 
     public void setId(ObjectId pId) {
-        mId = pId;
+        id = pId;
     }
 
     public void addRelationship(Relationship pRelation)

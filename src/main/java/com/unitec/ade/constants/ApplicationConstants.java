@@ -1,14 +1,14 @@
 package com.unitec.ade.constants;
 
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
-
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 
 public interface ApplicationConstants {
 	
-	public static final Long CASE_COUNT=new Long(100);
-	public static final Morphia MORPHIA= new Morphia(); 
-	public static final Datastore DATASTORE = MORPHIA.createDatastore(new MongoClient(), "police_crime_data");
-
+	public static final Long CASE_COUNT=new Long(100000);
+	
+	public static final MongoClient MONGO_CLIENT = new MongoClient( "localhost" , 27017 );
+	MongoDatabase DB = MONGO_CLIENT.getDatabase("police_crime_data");
+	
 }
+	
