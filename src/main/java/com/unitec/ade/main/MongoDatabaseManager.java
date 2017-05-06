@@ -5,7 +5,9 @@ import java.util.Scanner;
 import com.unitec.ade.business.ComplexQuery1;
 import com.unitec.ade.business.ComplexQuery2;
 import com.unitec.ade.business.ComplexQuery3;
+import com.unitec.ade.business.DataDeleteManager;
 import com.unitec.ade.business.DataInsertManager;
+import com.unitec.ade.business.DataUpdateManager;
 import com.unitec.ade.business.SimpleQuery1;
 import com.unitec.ade.business.SimpleQuery2;
 import com.unitec.ade.constants.ApplicationConstants;
@@ -72,10 +74,12 @@ public class MongoDatabaseManager implements ApplicationConstants
 			case 6 :	System.out.println("Exceuting Read Operation for Query");
 						new SimpleQuery2().runQuery();
 						break;
-			case 7:
-				break;
-			case 8 :
-				break;
+			case 7:		System.out.println("Exceuting Update Operation for Query");
+						new DataUpdateManager().runQuery();
+						break;
+			case 8 :	System.out.println("Exceuting Delete Operation for Query");
+						new DataDeleteManager().runQuery();
+						break;
 			} // end of switch
 		} while (choice!=0); // end of loop
 
